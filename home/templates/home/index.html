@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block start %}
+<h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. In, recusandae.</h1>
+
+<a href="/about/">About | <a href="/contact/">Contact</a>
+    <table class="container">
+        <tr>
+            <th>Sr. No.</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Can Vote</th>
+        </tr>
+        {% for people in peoples %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{people.name}}</td>
+            <td>{{people.Age}}</td>
+            <td {% if people.Age < 18 %} style="background-color:red" {% endif %}>
+                {% if people.Age >= 18 %}
+                👍
+                {% else %}
+                👎
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <p>
+        {{text | truncatechars:80}}
+        {% if 'cucumber' in vegetables %}
+        Yes Available
+        {% elif 'Tomato' in vegetables %}
+        Yes Available
+        {% else %}
+        Not Available
+        {% endif %}
+
+        {% firstof vegetables %}
+    </p>
+
+    {% endblock %}
